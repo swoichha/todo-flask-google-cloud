@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: todo-frontend
+spec:
+  replicas: 1  # Number of pods
+  selector:
+    matchLabels:
+      app: todo-frontend
+  template:
+    metadata:
+      labels:
+        app: todo-frontend
+    spec:
+      containers:
+      - name: todo-frontend
+        image: swoichha/todo-frontend:latest  # From Docker Hub
+        ports:
+        - containerPort: 5001  # Flask frontend port
+        env:
+        - name: API_URL
+          value: "http://35.184.31.83:5000/api"  # Backend VM IP

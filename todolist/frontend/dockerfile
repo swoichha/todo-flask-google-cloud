@@ -1,0 +1,19 @@
+# Use lightweight Python image
+FROM python:3.9-slim
+
+# Set working directory in container
+WORKDIR /app
+
+# Copy all files to /app
+COPY . /app
+
+# Install dependencies (Flask, requests)
+RUN pip install flask requests
+
+# Expose port 5000 (Flask default)
+EXPOSE 5001
+
+# Run the app when container starts
+CMD ["python", "todolist.py"]
+
+ENV API_URL="http://35.184.31.83:5000/api"
